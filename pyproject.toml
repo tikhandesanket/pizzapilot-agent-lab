@@ -8,6 +8,7 @@ name = "pizzapilot"
 version = "0.1.0"
 description = "A hands-on Python agent engineering learning project"
 requires-python = ">=3.11"
+dependencies = ["pydantic>=2.0"]
 
 [project.optional-dependencies]
 dev = [
