@@ -51,3 +51,18 @@ def test_domain_error_subclasses(
     assert error.message == message
     assert str(error) == message
     assert error.context == context
+    
+def menu_item_unavailable(item_id: str) -> None:
+    raise ItemUnavailable(
+        f"Menu item {item_id} is unavailable",
+        context={"item_id": item_id})
+def find_item(item_id: str) -> None:
+    raise UnknownItem(
+        f"Menu item {item_id} was not found", 
+        context={"item_id": item_id})
+def normalize_id(item_id: str) -> None:
+    if not item_id.isalnum():
+        raise InvalidQuantity(
+            f"Invalid item ID: {item_id}", 
+            context={"item_id": item_id})
+    
