@@ -13,11 +13,12 @@ def test_get_item_returns_matching_item():
         price_minor_units=25000,
         available=True,
     )
-    service =  MenuService((menu_item,))
+    service = MenuService((menu_item,))
     result = service.get_item("pizza-001")
     assert menu_item.id == "pizza-001"
     assert menu_item.name == "Margherita"
     assert result == menu_item
+
 
 def test_get_item_normalizes_id_before_comparison():
     menu_item = MenuItem(
@@ -27,10 +28,11 @@ def test_get_item_normalizes_id_before_comparison():
         price_minor_units=25000,
         available=True,
     )
-    service =  MenuService((menu_item,))
+    service = MenuService((menu_item,))
     result = service.get_item("  PIZZA-001  ")
-    assert result == menu_item    
-    
+    assert result == menu_item
+
+
 def test_item_is_available():
     menu_item = MenuItem(
         id="pizza-001",
@@ -39,8 +41,9 @@ def test_item_is_available():
         price_minor_units=25000,
         available=True,
     )
-    service =  MenuService((menu_item,))
+    service = MenuService((menu_item,))
     assert service.is_available("pizza-001", "Large") is True
+
 
 def test_item_is_not_available():
     menu_item = MenuItem(
@@ -50,9 +53,10 @@ def test_item_is_not_available():
         price_minor_units=25000,
         available=True,
     )
-    service =  MenuService((menu_item,))
+    service = MenuService((menu_item,))
     assert service.is_available("pizza-001", "Small") is False
-    
+
+
 def test_list_available_returns_only_available_items():
     available_item = MenuItem(
         id="pizza-001",
@@ -72,11 +76,13 @@ def test_list_available_returns_only_available_items():
 
     assert service.list_available() == (available_item,)
 
+
 def test_list_available_returns_empty_tuple_for_empty_menu():
     service = MenuService(())
 
-    assert service.list_available() == ()        
-                
+    assert service.list_available() == ()
+
+
 def test_get_item_raises_unknown_item_for_missing_id():
     menu_item = MenuItem(
         id="pizza-001",

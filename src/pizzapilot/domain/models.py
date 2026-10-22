@@ -36,4 +36,3 @@ class Order(BaseModel):
     customer: str = Field(min_length=1)
     lines: tuple[OrderLine, ...] = Field(min_length=1)
     status: OrderStatus = OrderStatus.PENDING
-
