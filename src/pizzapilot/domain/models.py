@@ -36,3 +36,12 @@ class Order(BaseModel):
     customer: str = Field(min_length=1)
     lines: tuple[OrderLine, ...] = Field(min_length=1)
     status: OrderStatus = OrderStatus.PENDING
+
+
+class PricingResult(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
+    subtotal_minor_units: int = Field(ge=0)
+    discount_minor_units: int = Field(ge=0)
+    tax_minor_units: int = Field(ge=0)
+    total_minor_units: int = Field(ge=0)
