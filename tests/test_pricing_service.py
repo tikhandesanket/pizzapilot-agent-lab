@@ -105,6 +105,7 @@ def test_discount_applied_at_exact_threshold() -> None:
     assert result.tax_minor_units == 4_500
     assert result.total_minor_units == 94_500
 
+
 def test_empty_order_raises_error() -> None:
     menu_service = MenuService(())
     pricing_service = PricingService(menu_service)
@@ -115,6 +116,7 @@ def test_empty_order_raises_error() -> None:
     assert exc_info.value.code == "EMPTY_ORDER"
     assert exc_info.value.message == "Order must contain at least one item"
     assert exc_info.value.context == {}
+
 
 def test_unknown_menu_item_raises_error() -> None:
     menu_service = MenuService(())
